@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-div d-flex justify-content-center col-md-6">
+    <form method="POST">
+        <div class="form-group">
+        {{ form.hidden_tag() }}
+            <div class="form-group row">
+                <h4>Please fill in the form:</h4>
+            </div>
+            <div class="form-group row">
+                {{ form.title.label(class='label-class') }}
+                {{ form.title(class='form-control', placeholder='Enter Title') }}
+            </div>
+            <div class="form-group row">
+                {{ form.text.label(class='label-class') }}
+                {{ form.text(class='form-control', placeholder='Short Description', rows=4) }}
+            </div>
+            <div class="form-group row">
+                {{ form.mileage.label(class='label-class') }}
+                {{ form.mileage(class='form-control', placeholder='Miles Covered', type='number') }}
+            </div>
+            <div class="form-group row">
+                {{ form.location.label(class='label-class') }} {{ form.location(class='form-control') }}
+            </div>
+            <div class="form-group row">
+                {{ form.resolved.label(class='label-class') }}
+                {{ form.resolved(class='radio-class', checked='Yes') }}
+                {{ form.follow_up.label(class='label-class radio-class2') }}
+                {{ form.follow_up(class='radio-class') }}
+            </div>
+            <div class="form-group row">
+                {{ form.submit(class='btn-customized btn btn-success') }}
+            </div>
+            {% for error in form.title.errors or form.text.errors %}
+                <p class="error-class">{{ error }}</p>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+{% endblock %}

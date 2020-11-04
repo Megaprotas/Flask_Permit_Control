@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>{{ permit.title }}</h3>
+    <h3>{{ permit.text }}</h3>
+    <p>{{ permit.date.strftime('%d-%m-%Y') }}</p>
+    <p>{{ permit.author.username }}</p>
+    <p>{{ permit.location | upper }}</p>
+    <p>{{ permit.mileage | round(2) }}</p>
+    <p>{{ permit.resolved | capitalize }}</p>
+    <p>{{ permit.follow_up | capitalize }}</p>
+
+<div>
+    {% if permit.author == current_user %}
+        <a href="{{ url_for('permit.update_permit', permit_id = permit.id) }}">Update</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">Delete</button>
+    {% endif %}
+</div>
+<div class="modal" tabindex="-1" id="deleteModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ permit.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You sure You want to permanently delete Permit?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <form action="{{ url_for('permit.delete_permit', permit_id = permit.id) }}">
+            <input type="submit" class="btn btn-danger" value="Confirm Delete" />
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

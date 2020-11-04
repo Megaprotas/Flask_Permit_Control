@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if permits.items %}
+        {% for p in permits.items %}
+        <div class="form-div justify-content-center col-md-12">
+            <div class="row">
+                <div class="col-md-11">
+                    <h3>{{ p.title }}</h3>
+                    <p><small>Submitted on {{ p.date.strftime('%d/%m/%Y') }} by
+                    <a class="link-dark" href="{{ url_for('accounts.user_permits', username=p.author.username) }}">
+                        {{ p.author.username | capitalize }}
+                    </a>
+                    </small></p>
+                    <p>{{ p.text|truncate(180) }}...
+                        <a class="link-light" href="{{ url_for('permit.permit', permit_id=p.id) }}">Read more</a>
+                    </p>
+                </div>
+                <div class="col-md-1 my-auto align-self-center">
+                    {% if p.author == current_user %}
+                        <button class="">
+                            <a class="link-light" href="{{ url_for('permit.update_permit', permit_id = p.id) }}">Update</a>
+                        </button>
+                        <hr>
+                        <button type="button" class="" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                    {% endif %}
+                </div>
+
+                <div class="modal" tabindex="-1" id="deleteModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">{{ p.title }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>You sure You want to permanently delete Permit?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <form action="{{ url_for('permit.delete_permit', permit_id = p.id) }}">
+                            <input type="submit" class="btn btn-danger" value="Confirm Delete" />
+                          </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h3 class="main-theme d-flex justify-content-center">No submitted forms yet</h3>
+    {% endif %}
+
+
+{% endblock %}

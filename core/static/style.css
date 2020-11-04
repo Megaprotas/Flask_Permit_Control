@@ -1,0 +1,62 @@
+.main-gradient {
+    background-image: linear-gradient(to bottom right, #141e30, #243b55);
+    padding-top: 50px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    height: 100vh;
+}
+
+.label-class {
+    color: #191919;
+    font-size: 14px;
+}
+
+.form-div {
+    background-color: #ededed;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.form-control:hover {
+    border-color: #141e30;
+}
+
+.radio-class {
+    list-style-type: none;
+    font-size: 14px;
+}
+
+.radio-class2 {
+    margin-left: 55px;
+}
+
+.btn-customized {
+    width: 100%;
+}
+
+.navbar-customized {
+    background-color: #141e30;
+}
+
+.main-theme {
+    color: #ededed;
+}
+
+.nav-item:active {
+    color:red;
+}
+
+.error-class {
+    color: #cc0000;
+    font-size: 12px;
+}
+
+.link-light:hover {
+    text-decoration: none;
+}
+
+.link-dark:hover {
+    text-decoration: none;
+}

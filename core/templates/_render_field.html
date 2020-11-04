@@ -1,0 +1,8 @@
+{% macro render_field(field) %}
+    {{ field.label(class='label-class') }}
+    {{ field(**kwargs)|safe }}
+
+    {% for error in field.errors %}
+        <p class="error-class">{{ error }}</p>
+    {% endfor %}
+{% endmacro %}
